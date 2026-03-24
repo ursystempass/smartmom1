@@ -13,102 +13,103 @@
 </head>
 
 <body>
+    <div class="flex">
+        <aside class="sidebar">
+            <div class="menu">
+                <nav class="navbar">
+                    <div class="logo">
+                        <img src="/assets/Logo_smartmom-removebg-preview.png">
+                        <h3>SmartMom</h3>
+                    </div>
+                </nav>
 
-<aside class="sidebar">
-<nav class="navbar">
-<div class="logo">
-<img src="/assets/Logo_smartmom-removebg-preview.png">
-<h3>SmartMom</h3>
-</div>
-</nav>
+            
+                <a href="/html/homepage.html" class="menu-item">
+                <img src="/assets/icon home.png"><span>Dashboard</span>
+                </a>
 
-<div class="menu">
-<a href="/html/homepage.html" class="menu-item">
-<img src="/assets/icon home.png"><span>Dashboard</span>
-</a>
+                <a href="/html/calcullator-input.html" class="menu-item">
+                <img src="/assets/icon kalku.png"><span>Kalkulator</span>
+                </a>
 
-<a href="/html/calcullator-input.html" class="menu-item">
-<img src="/assets/icon kalku.png"><span>Kalkulator</span>
-</a>
+                <a href="/html/reminder.html" class="menu-item">
+                <img src="/assets/icon reminderr.png"><span>Reminder</span>
+                </a>
 
-<a href="/html/reminder.html" class="menu-item">
-<img src="/assets/icon reminderr.png"><span>Reminder</span>
-</a>
+                <a href="/html/timeline.html" class="menu-item active">
+                <img src="/assets/icon artikell.png"><span>Timeline</span>
+                </a>
 
-<a href="/html/timeline.html" class="menu-item active">
-<img src="/assets/icon artikell.png"><span>Timeline</span>
-</a>
+                <a href="/html/profile.html" class="menu-item">
+                <img src="/assets/profile icon.png"><span>Profile</span>
+                </a>
+            </div>
 
-<a href="/html/profile.html" class="menu-item">
-<img src="/assets/profile icon.png"><span>Profile</span>
-</a>
-</div>
+            <div class="bottom">
+                <a class="menu-item logout">
+                <img src="/assets/logout.png"><span>Log Out</span>
+                </a>
+            </div>
+        </aside>
 
-<div class="bottom">
-<a class="menu-item logout">
-<img src="/assets/logout.png"><span>Log Out</span>
-</a>
-</div>
-</aside>
+            <div class="content">
 
-<div class="content">
+            <div class="header">
+            <h1 class="title">Pantau Perkembangan Si Kecil 👶</h1>
+            <p class="subtitle">
+            Milestone membantu Moms memahami perkembangan anak sesuai usia
+            </p>
+            </div>
 
-<div class="header">
-<h1 class="title">Pantau Perkembangan Si Kecil 👶</h1>
-<p class="subtitle">
-Milestone membantu Moms memahami perkembangan anak sesuai usia
-</p>
-</div>
+            <div class="top-bar">
+            <p id="statusMilestone" class="progress-text"></p>
 
-<div class="top-bar">
-<p id="statusMilestone" class="progress-text"></p>
+            <div class="progress-bar-container">
+            <div id="progressBar"></div>
+            </div>
+            </div>
 
-<div class="progress-bar-container">
-<div id="progressBar"></div>
-</div>
-</div>
+            <div class="tabs">
+            <button class="age-tab active" data-age="0-3">0-3</button>
+            <button class="age-tab" data-age="4-6">4-6</button>
+            <button class="age-tab" data-age="7-9">7-9</button>
+            <button class="age-tab" data-age="10-12">10-12</button>
+            </div>
 
-<div class="tabs">
-<button class="age-tab active" data-age="0-3">0-3</button>
-<button class="age-tab" data-age="4-6">4-6</button>
-<button class="age-tab" data-age="7-9">7-9</button>
-<button class="age-tab" data-age="10-12">10-12</button>
-</div>
+            <div id="timelineContainer" class="timeline-grid"></div>
 
-<div id="timelineContainer" class="timeline-grid"></div>
+            <div class="bottom-grid">
 
-<div class="bottom-grid">
+            <div class="info-box">
+            <h3>Kenapa milestone penting?</h3>
+            <p>
+            Milestone membantu Moms mengetahui apakah perkembangan anak sesuai usia.
+            Jika belum tercapai, dapat dilakukan stimulasi atau konsultasi.
+            </p>
+            </div>
 
-<div class="info-box">
-<h3>Kenapa milestone penting?</h3>
-<p>
-Milestone membantu Moms mengetahui apakah perkembangan anak sesuai usia.
-Jika belum tercapai, dapat dilakukan stimulasi atau konsultasi.
-</p>
-</div>
+            <div class="recommend">
+            <h3>Rekomendasi untuk Moms</h3>
+            <ul>
+            <li>Ajak bayi bermain dan berinteraksi setiap hari</li>
+            <li>Berikan stimulasi suara dan sentuhan</li>
+            <li>Perhatikan respon anak terhadap lingkungan</li>
+            </ul>
+            </div>
 
-<div class="recommend">
-<h3>Rekomendasi untuk Moms</h3>
-<ul>
-<li>Ajak bayi bermain dan berinteraksi setiap hari</li>
-<li>Berikan stimulasi suara dan sentuhan</li>
-<li>Perhatikan respon anak terhadap lingkungan</li>
-</ul>
-</div>
+            </div>
 
-</div>
+            <p class="warning">
+            Jika anak belum mencapai milestone tertentu,
+            disarankan memberikan stimulasi tambahan atau konsultasi.
+            </p>
 
-<p class="warning">
-Jika anak belum mencapai milestone tertentu,
-disarankan memberikan stimulasi tambahan atau konsultasi.
-</p>
-
-<div class="cta">
-<a href="/html/calcullator-input.html">
-<button class="btn-main">Update Data Anak</button>
-</a>
-</div>
-
+            <div class="cta">
+            <a href="/html/calcullator-input.html">
+            <button class="btn-main">Update Data Anak</button>
+            </a>
+            </div>
+    </div>
 </div>
 
 <script src="/js/timeline.js"></script>
