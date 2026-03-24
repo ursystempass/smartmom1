@@ -12,6 +12,35 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // =========================
+    // POPUP
+    // =========================
+    const popup = document.getElementById("popup");
+    const popupBtn = document.getElementById("popupBtn");
+
+    function showPopup(title, message){
+        document.getElementById("popupTitle").innerText = title;
+        document.getElementById("popupMessage").innerText = message;
+        popup.style.display = "flex";
+    }
+
+    function closePopup(){
+        popup.style.display = "none";
+    }
+
+    if(popupBtn){
+        popupBtn.addEventListener("click", closePopup);
+    }
+
+    // klik luar popup untuk close
+    if(popup){
+        popup.addEventListener("click", function(e){
+            if(e.target === popup){
+                closePopup();
+            }
+        });
+    }
+
+    // =========================
     // AMBIL ELEMENT
     // =========================
     const namaInput = document.getElementById("namaAnak");
@@ -39,6 +68,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
         selectedGender = user.anak.gender || "";
 
+        // aktifkan tombol gender
+        genderButtons.forEach(btn => {
+            if(btn.innerText === selectedGender){
+                btn.classList.add("active");
+            }
+        });
+
         // auto isi tanggal hari ini
         tglUkurInput.value = new Date().toISOString().split("T")[0];
     }
@@ -55,7 +91,7 @@ document.addEventListener("DOMContentLoaded", function () {
             (sekarang.getFullYear() - lahir.getFullYear()) * 12 +
             (sekarang.getMonth() - lahir.getMonth());
 
-        if (!isNaN(bulan)) {
+        if (!isNaN(bulan) && usiaText) {
             usiaText.innerText = "Usia anak : " + bulan + " bulan";
         }
     });
@@ -90,22 +126,22 @@ document.addEventListener("DOMContentLoaded", function () {
         // VALIDASI
         // =========================
         if (!nama || !tglLahir || !tglUkur) {
-            alert("Lengkapi data anak terlebih dahulu!");
+            showPopup("Data Anak Belum Lengkap", "Mohon isi nama anak, tanggal lahir, dan tanggal pengukuran.");
             return;
         }
 
         if (!berat || !tinggi || !kepala) {
-            alert("Lengkapi data pengukuran!");
+            showPopup("Data Pengukuran Belum Lengkap", "Mohon isi berat badan, tinggi badan, dan lingkar kepala.");
             return;
         }
 
         if (!selectedGender) {
-            alert("Pilih jenis kelamin!");
+            showPopup("Jenis Kelamin Belum Dipilih", "Silakan pilih jenis kelamin anak.");
             return;
         }
 
         if (berat <= 0 || tinggi <= 0 || kepala <= 0) {
-            alert("Data tidak valid!");
+            showPopup("Data Tidak Valid", "Pastikan semua nilai pengukuran lebih dari 0.");
             return;
         }
 

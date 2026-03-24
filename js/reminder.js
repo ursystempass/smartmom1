@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         card.innerHTML = `
             <div class="future-icon">
-                <img src="/smartmom/assets/ico pengingat1.png">
+                <img src="/assets/ico pengingat1.png">
             </div>
 
             <div class="future-info">

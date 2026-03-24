@@ -1,382 +1,614 @@
-/* RESET */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-}
-
 body {
-    background: linear-gradient(135deg, #ebe7ff, #f6f4ff);
-    padding: clamp(16px, 3vw, 30px);
-    margin-left: clamp(180px, 20vw, 240px);
+    margin-left:250px !important;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #f3efff, #f8f6ff);
 }
 
-.navbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 40px;
-}
 
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.logo img {
-    width: 38px;
-    filter: drop-shadow(0 3px 5px rgba(140, 110, 255, 0.3));
-}
-
-.logo span {
-    font-size: 14px;
-    font-weight: 600;
-}
-
-/* =========================
-   HERO SECTION
-========================= */
-
-.hero {
+.dashboard-layout{
     display: grid;
     grid-template-columns: 2fr 1fr;
     gap: 30px;
-    align-items: center;
-    margin-bottom: 40px;
+    align-items: start;
 }
 
-.hero-image img {
-    width: 100%;
-    border-radius: 25px;
-    object-fit: cover;
+/* HERO */
+.hero {
+display: flex;
+grid-template-columns: 2fr 1fr;
+gap: 20px;
+align-items: stretch;
 }
 
-/* =========================
-   REMINDER PANEL
-========================= */
-
-.reminder-panel {
-    width: 100%;
-    max-width: 350px;
-    padding: 20px;
-    border-radius: 25px;
-    background: linear-gradient(180deg, #e7dcff, #f3efff);
-    box-shadow: 0 20px 40px rgba(150, 120, 255, 0.25);
+.hero-image img{
+width: 100%;
+flex: 1;
+height: 450px;
+object-fit: cover;
+border-radius: 25px;
 }
 
-.reminder-header {
+.card-reminder span {
+font-weight: 500;
+}
+
+.card-reminder small {
+color: #777;
+font-size: 11px;
+}
+
+.reminder-panel{
+background: linear-gradient(180deg,#cbb7ff,#e9e2ff);
+padding: 15px;
+flex: 1;
+font-size: 13px;
+border-radius:25px;
+width:389px;
+box-shadow:0 15px 30px rgba(0,0,0,0.1);
+}
+
+.reminder-header{
+display:flex;
+align-items:center;
+gap:15px;
+margin-bottom:15px;
+}
+
+.bell-icon{
+width:50px;
+}
+
+.reminder-header h3{
+font-size:28px;
+font-weight: 500;
+color:#7a5cff;
+margin:0;
+}
+
+.progress-section{
+margin-top:10px;
+margin-bottom:20px;
+}
+
+.progress-title{
+display:flex;
+justify-content:space-between;
+margin-bottom:5px;
+font-weight:500;
+}
+
+.progress-bar{
+width:100%;
+height:10px;
+background:#e0d9ff;
+border-radius:10px;
+}
+
+.progress-fill{
+height:10px;
+background:linear-gradient(90deg,#a66cff,#6f5bff);
+border-radius:10px;
+}
+
+.timeline{
+margin-top:15px;
+position:relative;
+padding-left:20px;
+}
+
+.timeline::before{
+content:"";
+position:absolute;
+left:8px;
+top:0;
+bottom:0;
+width:3px;
+background:#bba8ff;
+}
+
+.timeline-item{
+display:flex;
+align-items:center;
+margin-bottom:18px;
+position:relative;
+}
+
+.circle{
+width:16px;
+height:16px;
+border:3px solid #9a84ff;
+border-radius:50%;
+background:white;
+position:absolute;
+left:-2px;
+}
+
+.circle.done{
+background:#c5b7ff;
+}
+
+.card-reminder{
+gap: 10px;
+background:#f4f2ff;
+padding:12px 16px;
+font-size: 13px;
+border-radius:15px;
+margin-left:25px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+width:100%;
+}
+
+.date{
+font-size:12px;
+color:gray;
+}
+
+.badge{
+padding:4px 10px;
+border-radius:12px;
+font-size:11px;
+}
+
+.badge.pending{
+background:#ffd8b0;
+color:#b65a00;
+}
+
+.badge.done{
+background:#c8ffd4;
+color:#0a8f2f;
+}
+
+.badge.priority{
+background:#e0c8ff;
+color:#6a32c9;
+}
+
+.progress-wrapper {
+margin-top: 15px;
+}
+
+.progress-text {
+display: flex;
+justify-content: space-between;
+font-size: 13px;
+    margin-bottom: 5px;
+}
+
+
+
+.cards {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+
+.card {
+    background: linear-gradient(180deg, #e9e2ff, #ddd2ff);
+    border-radius: 30px;
+    padding: 25px;
+
+    box-shadow:
+        0 15px 30px rgba(140,110,255,0.2),
+        inset 0 2px 8px rgba(255,255,255,0.6);
+
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+}
+
+
+/* CARD BIAR LEBIH PADAT */
+.kalkulator {
+    padding: 18px;
+}
+
+/* ATAS */
+.kalkulator-top {
     display: flex;
-    align-items: center;
     gap: 12px;
-    margin-bottom: 16px;
-}
-
-.icon {
-    width: 42px;
-    height: 42px;
-    display: flex;
     align-items: center;
-    justify-content: center;
-    background: #efe9ff;
-    border-radius: 12px;
 }
 
-.icon img {
-    width: 24px;
+/* ICON LEBIH PROPORSIONAL */
+.kalkulator-top img {
+    width: 60px;
+    flex-shrink: 0;
+    filter: drop-shadow(0 6px 8px rgba(150,120,255,0.3));
 }
 
-.header-text h3 {
-    font-size: 14px;
-    color: #7a5cff;
+/* TEXT */
+.kalkulator-text h2 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #5b4b8a;
+    margin-bottom: 3px;
 }
 
-.header-text p {
-    font-size: 11px;
-    color: #888;
+.kalkulator-text p {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 8px;
 }
 
-/* PROGRESS */
-
-.progress-title {
-    display: flex;
-    justify-content: space-between;
-    font-size: 11px;
-    margin-bottom: 6px;
+.btn-main {
+    padding: 6px 12px;
+    font-size: 12px;
 }
 
-.progress-bar {
-    width: 100%;
-    height: 6px;
-    background: #e4dfff;
-    border-radius: 10px;
-}
+.kalkulator-info {
+    margin-top: 15px;
 
-.progress-fill {
-    height: 100%;
-    width: 40%;
-    background: #8b6cff;
-    border-radius: 10px;
-}
-
-/* LIST */
-
-.reminder-list {
-    margin-top: 12px;
     display: flex;
     flex-direction: column;
     gap: 8px;
 }
 
-.reminder-item {
-    background: white;
-    padding: 10px 12px;
-    border-radius: 12px;
-    font-size: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
-}
-
-.reminder-item p {
-    font-size: 11px;
-    color: #666;
-}
-
-/* =========================
-   EMPTY STATE
-========================= */
-
-.empty-state {
-    text-align: center;
-    max-width: 600px;
-    margin: 0 auto 50px;
-}
-
-.empty-state h2 {
-    font-size: 24px;
-    margin-bottom: 10px;
-}
-
-.empty-state p {
-    color: #666;
-    margin-bottom: 20px;
-    font-size: 13px;
-}
-
-.btn-start {
-    background: #ff7a3d;
-    color: white;
-    padding: 10px 22px;
-    border-radius: 8px;
-    border: none;
-    cursor: pointer;
-}
-
-/* =========================
-   CARDS
-========================= */
-
-.cards {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 25px;
-    margin-top: 30px;
-}
-
-.card {
-    background: linear-gradient(180deg, #e7dcff, #d8caff);
-    padding: 20px;
-    border-radius: 20px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.kalkulator {
-    background: linear-gradient(180deg, #ece5ff, #e2d7ff);
-}
-
-.kalkulator-top {
-    display: flex;
-    gap: 15px;
-    align-items: center;
-}
-
-.kalkulator-icon img {
-    width: 70px;
-}
-
-.kalkulator-text h2 {
-    font-size: 18px;
-    color: #6a55e6;
-}
-
-.kalkulator-text p {
-    font-size: 12px;
-    color: #7a7a7a;
-    margin-bottom: 10px;
-}
-
-.btn-kalkulator {
-    background: linear-gradient(90deg, #a78bfa, #c084fc);
-    border: none;
-    padding: 8px 18px;
-    border-radius: 20px;
-    color: white;
-    cursor: pointer;
-}
-
-.kalkulator-info {
-    display: flex;
-    gap: 15px;
-    margin-top: 15px;
-    flex-wrap: wrap;
-}
-
 .info-item {
     display: flex;
-    align-items: center;
-    gap: 6px;
+    justify-content: space-between;
+
     font-size: 12px;
-}
-
-/* =========================
-   MILESTONE
-========================= */
-
-.milestone {
-    background: linear-gradient(180deg, #efe9ff, #e5dbff);
-}
-
-.milestone-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background: white;
-    padding: 10px;
-    border-radius: 14px;
-    font-size: 12px;
-}
-
-.milestone-progress {
-    margin-top: 15px;
-    background: #8b6cff;
-    color: white;
-    font-size: 11px;
-    padding: 6px 12px;
-    border-radius: 20px;
-    width: fit-content;
-}
-
-/* =========================
-   ARTIKEL
-========================= */
-
-.artikel-item {
-    display: flex;
-    gap: 10px;
-    background: white;
-    padding: 10px;
-    border-radius: 14px;
-    font-size: 12px;
-}
-
-.artikel-img {
-    width: 55px;
-    height: 55px;
+    background: #f8f6ff;
+    padding: 8px 10px;
     border-radius: 10px;
-    object-fit: cover;
 }
 
-.lihat-artikel {
-    margin-top: 15px;
-    background: linear-gradient(90deg, #a78bfa, #c084fc);
+.info-item span {
+    color: #666;
+}
+
+.info-item b {
+    color: #8b6cff;
+}
+
+.kalkulator:hover {
+    transform: translateY(-3px);
+    transition: 0.2s;
+}
+
+.btn-main {
+    margin-top: 10px;
+    padding: 10px 20px;
+    border-radius: 25px;
     border: none;
-    padding: 8px 16px;
-    border-radius: 20px;
+
+    background: linear-gradient(90deg, #a78bfa, #c084fc);
     color: white;
-    font-size: 12px;
-    cursor: pointer;
-}
 
-/* =========================
-   POPUP
-========================= */
-
-.popup-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.4);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    visibility: hidden;
+    box-shadow: 0 8px 20px rgba(160,120,255,0.4);
     transition: 0.3s;
 }
 
-.popup-overlay.active {
-    opacity: 1;
-    visibility: visible;
+.btn-main:hover {
+    transform: scale(1.05);
 }
-
-.popup-card {
-    background: white;
+/* CARD MILESTONE */
+.card.milestone {
+    background: linear-gradient(135deg, #f5f3ff, #ede9fe);
     padding: 25px;
-    border-radius: 18px;
-    width: 300px;
-    text-align: center;
+    border-radius: 24px;
+    box-shadow: 0 8px 25px rgba(139, 108, 255, 0.15);
+    transition: 0.3s;
 }
 
-.popup-actions {
+.card.milestone:hover {
+    transform: translateY(-3px);
+}
+
+/* TITLE */
+.card.milestone h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #5b4b8a;
+    margin-bottom: 18px;
+}
+
+.card.artikel h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #5b4b8a;
+    margin-bottom: 18px;
+}
+
+/* LIST */
+.milestone-list {
     display: flex;
-    gap: 10px;
-    justify-content: center;
-    margin-top: 15px;
+    flex-direction: column;
+    gap: 12px;
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
+/* ITEM */
+.milestone-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
 
-/* TABLET */
-@media (max-width:1024px) {
+    background: rgba(255,255,255,0.7);
+    backdrop-filter: blur(6px);
 
-    body {
-        margin-left: 90px;
-        /* ikut sidebar kecil */
-    }
+    padding: 14px;
+    border-radius: 16px;
 
-    .hero {
+    font-size: 13px;
+    color: #4b3f72;
+
+    border: 1px solid rgba(139, 108, 255, 0.1);
+
+    transition: all 0.25s ease;
+}
+
+/* HOVER */
+.milestone-item:hover {
+    background: #f3efff;
+    transform: scale(1.02);
+}
+
+/* HIDE CHECKBOX */
+.milestone-item input {
+    display: none;
+}
+
+/* CIRCLE */
+.checkmark {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 2px solid #c4b5fd;
+    display: inline-block;
+    position: relative;
+    flex-shrink: 0;
+    transition: 0.3s;
+}
+
+/* CHECKED */
+.milestone-item input:checked + .checkmark {
+    background: linear-gradient(135deg, #8b6cff, #c084fc);
+    box-shadow: 0 0 10px rgba(139, 108, 255, 0.6);
+    border: none;
+}
+
+/* CHECK ICON */
+.milestone-item input:checked + .checkmark::after {
+    content: "✔";
+    color: white;
+    font-size: 12px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -55%);
+}
+
+/* TEXT */
+.milestone-item span:last-child {
+    flex: 1;
+}
+
+/* TEXT CHECKED */
+.milestone-item input:checked + .checkmark + span {
+    text-decoration: line-through;
+    color: #8b6cff;
+    opacity: 0.7;
+}
+
+/* PROGRESS BADGE */
+.progress-badge {
+    margin: 22px auto 0;
+    padding: 10px 20px;
+    border-radius: 999px;
+
+    font-size: 13px;
+    font-weight: 500;
+    color: white;
+
+    background: linear-gradient(90deg, #a78bfa, #c084fc);
+
+    box-shadow: 0 6px 15px rgba(139, 108, 255, 0.3);
+
+    width: fit-content;
+
+    transition: 0.3s;
+}
+
+/* efek saat full */
+.progress-badge.complete {
+    background: linear-gradient(135deg, #22c55e, #4ade80);
+    box-shadow: 0 6px 15px rgba(34, 197, 94, 0.4);
+}
+.milestone-item { 
+    display: flex;
+    align-items: center;
+    gap: 14px; /* dari 30 jadi lebih rapih */
+
+    background: #f8f6ff;
+    padding: 12px 14px;
+    border-radius: 20px;
+
+    font-size: 13px;
+    line-height: 1.4;
+
+    transition: 0.2s;
+}
+
+.milestone-item:hover {
+    background: #efe9ff;
+}
+
+.milestone-item input {
+    display: none;
+}
+
+.checkmark {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #b39ddb;
+    display: inline-block;
+    position: relative;
+    flex-shrink: 0;
+    transition: 0.3s;
+}
+
+.milestone-item input:checked + .checkmark {
+    background: linear-gradient(135deg, #a78bfa, #c084fc);
+    border: none;
+}
+
+.milestone-item input:checked + .checkmark::after {
+    content: "✔";
+    color: white;
+    font-size: 12px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -55%);
+}
+
+.milestone-item span:last-child {
+    flex: 1;
+}
+
+.milestone-item input:checked + .checkmark + span {
+    text-decoration: line-through;
+    color: #8b6cff;
+    opacity: 0.8;
+}
+
+.milestone-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.progress-badge {
+    margin: 20px auto 0;
+    padding: 10px 20px;
+    border-radius: 25px;
+
+    font-size: 16px;
+    font-weight: 500;
+    color: white;
+
+    background: linear-gradient(90deg, #a78bfa, #c084fc);
+    width: fit-content;
+}
+
+
+.artikel-list{
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 10px;
+}
+
+.artikel-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    padding: 12px;
+    border-radius: 16px;
+
+    background: #fff;
+    text-decoration: none;
+    color: #333;
+
+    transition: all 0.2s ease;
+}
+
+.artikel-item:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+}
+
+.artikel-item img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.artikel-text{
+    display: flex;
+    flex-direction: column;
+}
+
+.judul{
+
+    font-weight: 600;
+    line-height: 1.3;
+    font-size: 14px;
+    color: #5b4b8a;
+}
+
+.kategori{
+    font-size: 12px;
+    color: #888;
+    margin-top: 2px;
+}
+
+.lihat-artikel{
+    display: block;
+    margin-top: 14px;
+    text-align: center;
+
+    padding: 10px;
+    border-radius: 12px;
+
+    background: linear-gradient(90deg, #a78bfa, #c084fc);
+    color: white;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+
+    transition: 0.2s;
+}
+
+.lihat-artikel:hover{
+    opacity: 0.85;
+}
+
+
+@media (max-width:1000px) {
+    .dashboard-layout{
         grid-template-columns: 1fr;
     }
 
+    .hero-image img{
+        height: 300px;
+    }
+
     .cards {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: 1fr 1fr;
     }
 }
 
-/* MOBILE */
 @media (max-width:768px) {
-
-    body {
-        margin-left: 0;
-        padding: 20px;
-    }
+    .main-content { margin-left: 0; }
 
     .cards {
         grid-template-columns: 1fr;
     }
+}
 
-    .kalkulator-top {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .kalkulator-info {
-        flex-direction: column;
+@media (max-width: 1024px) {
+    .cards {
+        grid-template-columns: 1fr 1fr;
     }
 }
 
+@media (max-width: 768px) {
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .milestone-item {
+        font-size: 12px;
+    }
+}

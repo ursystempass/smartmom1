@@ -5,12 +5,33 @@ document.addEventListener("DOMContentLoaded", () => {
     const statusText = document.getElementById("statusMilestone");
     const progressBar = document.getElementById("progressBar");
 
+    
     const milestones = {
-        "0-3": ["Mengangkat Kepala","Tersenyum","Mengikuti Objek","Mengoceh"],
-        "4-6": ["Tengkurap Stabil","Membalikkan Badan","Meraih Benda","Mengoceh Aktif"],
-        "7-9": ["Duduk Sendiri","Merangkak","Memindahkan Benda","Meniru Suara"],
-        "10-12": ["Berdiri","Melambaikan Tangan","Memanggil Mama","Belajar Jalan"]
-    };
+    "0-3": [
+        { title: "Mengangkat Kepala", img: "/assets/bayi mengangkat kepala.png" },
+        { title: "Tersenyum", img: "/assets/bayi tersenyum.png" },
+        { title: "Mengikuti Objek", img: "/assets/bayi mengikuti objek.png" },
+        { title: "Mengoceh", img: "/assets/bayi mengoceh.png" }
+    ],
+    "4-6": [
+        { title: "Tengkurap Stabil", img: "/assets/bayi tengkurap.png" },
+        { title: "Membalikkan Badan", img: "/assets/bayi membalikkan badan.png" },
+        { title: "Meraih Benda", img: "/assets/bayi meraih benda.png" },
+        { title: "Mengoceh Aktif", img: "/assets/bayi mengoceh aktiv.png" }
+    ],
+    "7-9": [
+        { title: "Duduk Sendiri", img: "/assets/bayi duduk.png" },
+        { title: "Merangkak", img: "/assets/bayi merangkak.png" },
+        { title: "Memindahkan Benda", img: "/assets/bayi memindahkan benda.png" },
+        { title: "Meniru Suara", img: "/assets/bayi meniru suara.png" }
+    ],
+    "10-12": [
+        { title: "Berdiri", img: "/assets/bayi berdiri.png" },
+        { title: "Melambaikan Tangan", img: "/assets/bayi melambaikan tangan.png" },
+        { title: "Memanggil Mama", img: "/assets/bayi mengucapkan mama atau papa.png" },
+        { title: "Belajar Jalan", img: "/assets/bayi belajar jalan.png" }
+    ]
+};
 
     function getAgeCategory() {
         const user = JSON.parse(localStorage.getItem("smartmom_user"));
@@ -39,8 +60,8 @@ document.addEventListener("DOMContentLoaded", () => {
             card.className = "timeline-card";
 
             card.innerHTML = `
-                <h4>${item}</h4>
-                <img src="/smartmom/assets/baby.png">
+                <h4>${item.title}</h4>
+                <img src="${item.img}">
                 <label class="check-label">
                     <input type="checkbox" data-index="${i}">
                     Sudah tercapai

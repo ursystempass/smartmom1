@@ -1,43 +1,58 @@
+function showErrorPopup(message) {
+    document.getElementById("errorMessage").textContent = message;
+    document.getElementById("errorPopup").classList.add("active");
+}
+
+function closeErrorPopup() {
+    document.getElementById("errorPopup").classList.remove("active");
+}
+
+function showSuccessPopup() {
+    document.getElementById("popupRegister").classList.add("active");
+
+    setTimeout(() => {
+        window.location.href = "/html/sign in.html";
+    }, 3000);
+}
+
 document.addEventListener("DOMContentLoaded", function () {
 
-    const registerForm = document.getElementById("registerForm");
+    const form = document.getElementById("registerForm");
 
-    registerForm.addEventListener("submit", function (e) {
-
+    form.addEventListener("submit", function (e) {
         e.preventDefault();
 
         const nama = document.getElementById("nama").value.trim();
         const email = document.getElementById("email").value.trim();
         const password = document.getElementById("password").value.trim();
 
+        const existingUser = JSON.parse(localStorage.getItem("smartmom_user"));
+
+        // ❌ VALIDASI (STOP LANGSUNG)
         if (!nama || !email || !password) {
-            alert("Semua data wajib diisi!");
+            showErrorPopup("Isi semua data!");
             return;
         }
 
         if (password.length < 6) {
-            alert("Password minimal 6 karakter!");
+            showErrorPopup("Password minimal 6 karakter!");
             return;
         }
-
-        const existingUser = JSON.parse(localStorage.getItem("smartmom_user"));
 
         if (existingUser && existingUser.email === email) {
-            alert("Email sudah terdaftar!");
+            showErrorPopup("Email sudah dipakai!");
             return;
         }
 
-        const user = {
-            nama: nama,
-            email: email,
-            password: password,
+        // ✅ KALAU LOLOS BARU JALAN KE SINI
+        localStorage.setItem("smartmom_user", JSON.stringify({
+            nama,
+            email,
+            password,
             anak: null
-        };
+        }));
 
-        localStorage.setItem("smartmom_user", JSON.stringify(user));
-
-        document.getElementById("popupRegister").classList.add("active");
-
+        showSuccessPopup();
     });
 
 });

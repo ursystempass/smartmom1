@@ -29,6 +29,129 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     /* =========================
+       LOAD REMINDER PANEL (FIX)
+    ========================= */
+
+    const timelineList = document.getElementById("timelineList");
+    const progressText = document.getElementById("progressText");
+    const progressFill = document.getElementById("progressFill");
+
+    // Kalau belum ada data reminder → buat default
+    if (!localStorage.getItem("reminders")) {
+        const defaultReminders = [
+    {
+        judul: "Belum isi kalkulator bulan ini",
+        tanggal: "28 January",
+        done: false
+    },
+    {
+        judul: "Update berat badan bulan ini",
+        tanggal: "-",
+        done: true
+    },
+    {
+        judul: "Bulan ini fokus stimulasi merangkak",
+        tanggal: "-",
+        done: false
+    }
+];
+
+        localStorage.setItem("reminders", JSON.stringify(defaultReminders));
+    }
+
+    const reminders = JSON.parse(localStorage.getItem("reminders"));
+
+    if (timelineList && reminders) {
+
+        timelineList.innerHTML = ""; // supaya tidak double
+
+        let doneCount = 0;
+
+        reminders.forEach(item => {
+
+            if (item.status === "done") {
+                doneCount++;
+            }
+
+            // Ubah text badge
+            let badgeText = item.status;
+            if (item.status === "done") badgeText = "Selesai";
+            if (item.status === "pending") badgeText = "Pending";
+            if (item.status === "priority") badgeText = "Prioritas";
+
+           timelineList.innerHTML += `
+                 <div class="timeline-item">
+                 <div class="circle ${item.done ? 'done' : ''}"></div>
+
+                    <div class="card-reminder">
+                <div>
+                      ${item.judul}
+                     <div class="date">${item.tanggal}</div>
+                    </div>
+
+                 <span class="badge ${item.done ? 'done' : 'pending'}">
+            ${item.done ? 'Selesai' : 'Pending'}
+        </span>
+    </div>
+</div>
+`;
+        });
+
+        // Progress
+        if (progressText) {
+            progressText.innerText = `${doneCount} dari ${reminders.length} selesai`;
+        }
+
+        if (progressFill) {
+            let percent = (doneCount / reminders.length) * 100;
+            progressFill.style.width = percent + "%";
+        }
+    }
+    document.addEventListener("DOMContentLoaded", () => {
+
+    const timeline = document.getElementById("timelineList");
+    const progressText = document.getElementById("progressText");
+    const progressFill = document.getElementById("progressFill");
+
+    let reminders = JSON.parse(localStorage.getItem("reminders")) || [];
+
+    timeline.innerHTML = "";
+
+    if (reminders.length === 0) {
+        timeline.innerHTML = "<p style='color:#777;'>Belum ada reminder</p>";
+        return;
+    }
+
+    let doneCount = 0;
+
+    reminders.slice(0, 5).forEach(reminder => {
+
+        if (reminder.done) doneCount++;
+
+        const item = document.createElement("div");
+        item.classList.add("timeline-item");
+
+        item.innerHTML = `
+            <div class="circle ${reminder.done ? "done" : ""}"></div>
+
+            <div class="card-reminder">
+                <span>${reminder.judul}</span>
+                <small>${reminder.tanggal}</small>
+            </div>
+        `;
+
+        timeline.appendChild(item);
+    });
+
+    // PROGRESS
+    progressText.innerText = `${doneCount} dari ${reminders.length} selesai`;
+
+    const percent = (doneCount / reminders.length) * 100;
+    progressFill.style.width = percent + "%";
+
+});
+
+    /* =========================
        DATA ANAK
     ========================= */
 
@@ -37,51 +160,51 @@ document.addEventListener("DOMContentLoaded", function () {
     const emptyState = document.getElementById("emptyState");
     const cardsSection = document.getElementById("cardsSection");
 
-    if (!data) {
+    if (!data || !data.tglLahir || !data.pengukuran) {
 
-        // BELUM ADA DATA
-        if (emptyState) emptyState.style.display = "block";
-        if (cardsSection) cardsSection.style.display = "none";
+    if (emptyState) emptyState.style.display = "block";
+    if (cardsSection) cardsSection.style.display = "none";
 
-    } else {
+} else {
 
-        // ADA DATA
-        if (emptyState) emptyState.style.display = "none";
-        if (cardsSection) cardsSection.style.display = "grid";
+    if (emptyState) emptyState.style.display = "none";
+    if (cardsSection) cardsSection.style.display = "grid";
 
-        /* =========================
-           HITUNG USIA
-        ========================= */
+    const lahir = new Date(data.tglLahir);
+    const sekarang = new Date();
 
-        const lahir = new Date(data.tglLahir);
-        const sekarang = new Date();
+    let usiaBulan =
+        (sekarang.getFullYear() - lahir.getFullYear()) * 12 +
+        (sekarang.getMonth() - lahir.getMonth());
 
-        let usiaBulan =
-            (sekarang.getFullYear() - lahir.getFullYear()) * 12 +
-            (sekarang.getMonth() - lahir.getMonth());
+    const usiaEl = document.getElementById("usiaAnak");
 
-        const usiaEl = document.getElementById("usiaAnak");
-
-        if (usiaEl) {
-            usiaEl.innerText = usiaBulan + " bulan";
-        }
-
-        /* =========================
-           UPDATE TERAKHIR
-        ========================= */
-
-        if (data.pengukuran && data.pengukuran.length > 0) {
-
-            const terakhir = data.pengukuran[data.pengukuran.length - 1];
-
-            const updateEl = document.getElementById("updateTerakhir");
-
-            if (updateEl) {
-                updateEl.innerText = terakhir.tgl;
-            }
-        }
+    if (usiaEl) {
+        usiaEl.innerText = usiaBulan + " bulan";
     }
 
+    if (data.pengukuran && data.pengukuran.length > 0) {
+
+        const terakhir = data.pengukuran[data.pengukuran.length - 1];
+
+        const updateEl = document.getElementById("updateTerakhir");
+
+        if (updateEl) {
+            updateEl.innerText = terakhir.tgl;
+        }
+    }
+}
+function initMilestone() {
+    const total = document.querySelectorAll(".milestone-item input").length;
+    const checked = document.querySelectorAll(".milestone-item input:checked").length;
+    const progressText = document.getElementById("milestoneProgressText");
+
+    if (progressText) {
+        progressText.textContent = `${checked}/${total} Terselesaikan`;
+    }
+}
+
+initMilestone();
     /* =========================
        LOGOUT SYSTEM
     ========================= */
@@ -105,9 +228,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (confirmBtn) {
         confirmBtn.addEventListener("click", function () {
-
             localStorage.removeItem("login_status");
-
             window.location.href = "/html/landingpage.html";
         });
     }
@@ -120,13 +241,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const currentPage = window.location.pathname.split("/").pop();
 
     menuItems.forEach(item => {
-
         const link = item.getAttribute("href");
 
         if (link && link.includes(currentPage)) {
             item.classList.add("active");
         }
-
     });
 
 });
